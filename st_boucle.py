@@ -13,10 +13,10 @@ def parametric_curve(t, a, b):
     return x, y
 
 # Streamlit sliders
-a = st.slider('Valeur de a', 9400, 9600, 9550)
-zoom = st.slider('Zoom', 0.0, 1.0, 1.0)
+a = st.slider('Valeur de a', 0, 10000, 9550,step=1)
+zoom = st.slider('Zoom', 0, 3000, 3000,step = 1)
 x_center = st.slider('Déplacement en x', -5.0, 5.0, 0.0)
-y_center = st.slider('Déplacement en y', -2.0, -1.0, 0.0)
+y_center = st.slider('Déplacement en y', -2.0, 2.0, 0.0,step=0.001)
 
 # Calculer la valeur de b
 b = 10000 - a
@@ -37,8 +37,8 @@ ax.grid(True)
 ax.axis('equal')
 
 # Définir les limites des axes pour zoomer et se déplacer
-ax.set_xlim(x_center - zoom, x_center + zoom)
-ax.set_ylim(y_center - zoom, y_center + zoom)
+ax.set_xlim(x_center - zoom/1000, x_center + zoom/1000)
+ax.set_ylim(y_center - zoom/1000, y_center + zoom/1000)
 
 # Afficher la figure dans Streamlit
 st.pyplot(fig)
